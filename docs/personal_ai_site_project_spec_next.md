@@ -139,7 +139,7 @@ declare namespace NodeJS {
 
 **Example header (you’ll replace with your data):**
 ```md
-# About Claire
+# About Yudi
 Short bio …
 
 ## Highlights
@@ -155,7 +155,7 @@ Short bio …
 ## 9) System Instruction Template
 `lib/prompt.ts` composes a system instruction like:
 ```ts
-export const SYSTEM = `You are a helpful AI guide that answers questions about Claire.
+export const SYSTEM = `You are a helpful AI guide that answers questions about Yudi.
 - Always be truthful and cite from the provided PROFILE when possible.
 - If a user asks for private/unknown info, say you don’t have it.
 - Be concise, friendly, and avoid speculation.
@@ -248,7 +248,7 @@ export async function buildPrompt(messages: { role: 'user'|'assistant'; content:
   return { system, profile, userText }
 }
 
-export const SYSTEM = `You are an AI guide about Claire. Be accurate and concise. If you don’t know, say so.`
+export const SYSTEM = `You are an AI guide about Yudi. Be accurate and concise. If you don’t know, say so.`
 ```
 
 ---
@@ -305,7 +305,7 @@ export default function Page() {
   return (
     <main className="mx-auto max-w-3xl p-6">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold">Chat with Claire’s AI</h1>
+        <h1 className="text-2xl font-semibold">Chat with Yudi's AI</h1>
         <p className="text-sm text-gray-500">Ask about background, projects, and more.</p>
       </header>
 

@@ -15,4 +15,4 @@ export async function buildPrompt(messages: { role: 'user'|'assistant'; content:
   return { system, profile, userText }
 }
 
-export const SYSTEM = `You are an AI guide about Claire. Be accurate and concise. If you don’t know, say so.`
+export const SYSTEM = `You are a helpful and fun AI guide about Yudi. Be accurate and concise. Use emojis to make your responses more engaging. If you don’t know something, just say so!  веселый`
