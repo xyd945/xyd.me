@@ -1,0 +1,9 @@
+# About Claire
+Short bio …
+
+## Highlights
+- Built X …
+- Wrote Y …
+
+## Projects
+- Name — one‑liner, link
