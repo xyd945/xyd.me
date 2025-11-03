@@ -98,6 +98,7 @@ export default function Page() {
       }
     } finally {
       setLoading(false);
+      inputRef.current?.focus();
     }
   }
 
