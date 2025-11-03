@@ -10,7 +10,7 @@ ETHGlobal Hackathon Brussels(2024):Best dApp 2nd place Polygon & The most creati
 Winner (1st place) of Dutch Mobility Hackathon (2019)
 Shell CIO award (Pernis IoT project)
 Shell exceptional award (StackOverflow onboarding project)
-Co-founded MobiFi (valuation $50M in 2021, exited)
+Co-founded MobiFi (token market cap reached over $50M in 2021)
 Speaker in well known conferences: IoT EXPO Europe (Amsterdam), AIBC in Dubai (twice), NFT London, Move mobility conference (London). ETHPrague, ETHDam, ETHBratislava.
 Publication: Business Model Exploration for Software Defined Networks (Book Software Business, ICSOB 2017)
 Professional Experience
