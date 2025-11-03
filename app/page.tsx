@@ -117,7 +117,7 @@ export default function Page() {
             <span className="text-theme-secondary">$ ~</span>
             <input
               ref={inputRef}
-              className="flex-1 bg-transparent focus:outline-none text-theme-primary border-none"
+              className="chat-input flex-1 bg-transparent focus:outline-none border-none"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={loading}
