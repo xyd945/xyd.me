@@ -6,9 +6,7 @@ interface MessageLineProps {
 }
 
 export const MessageLine: React.FC<MessageLineProps> = ({ role, content }) => {
-  const isUser = role === 'user';
-
-  if (isUser) {
+  if (role === 'user') {
     return (
       <div>
         <span className="text-theme-primary">visitor@xyd.me:</span>
@@ -19,8 +17,10 @@ export const MessageLine: React.FC<MessageLineProps> = ({ role, content }) => {
   }
 
   return (
-    <div className="whitespace-pre-wrap text-theme-text">
-      {content}
+    <div>
+      <span className="text-theme-accent">ai@xyd.me:</span>
+      <span className="text-theme-secondary">$ ~ </span>
+      <span className="whitespace-pre-wrap">{content}</span>
     </div>
   );
 };

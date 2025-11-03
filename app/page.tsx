@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { MessageLine } from '@/components/MessageLine';
+import { Thinking } from '@/components/Thinking';
 
 const AsciiArt = () => (
   <pre className="text-theme-accent text-xs leading-none">
@@ -38,7 +39,7 @@ export default function Page() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, loading]);
 
   const handlePageClick = () => {
     inputRef.current?.focus();
@@ -70,12 +71,17 @@ export default function Page() {
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let assistantMessage = '';
-
-      setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+      let isFirstChunk = true;
 
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
+
+        if (isFirstChunk) {
+          setLoading(false);
+          setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+          isFirstChunk = false;
+        }
         
         await new Promise(resolve => setTimeout(resolve, 20));
 
@@ -103,6 +109,7 @@ export default function Page() {
           {messages.map((m, i) => (
             <MessageLine key={i} role={m.role} content={m.content} />
           ))}
+          {loading && <Thinking />}
           <div ref={messagesEndRef} />
         </main>
         <footer className="mt-2">
