@@ -18,7 +18,7 @@ export const MessageLine: React.FC<MessageLineProps> = ({ role, content }) => {
 
   return (
     <div>
-      <span className="text-theme-accent">ai@xyd.me:</span>
+      <span className="text-theme-accent">kitt@xyd.me:</span>
       <span className="text-theme-secondary">$ ~ </span>
       <span className="whitespace-pre-wrap">{content}</span>
     </div>

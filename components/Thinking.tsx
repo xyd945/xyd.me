@@ -28,7 +28,7 @@ export const Thinking: React.FC = () => {
 
   return (
     <div>
-      <span className="text-theme-accent">ai@xyd.me:</span>
+      <span className="text-theme-accent">kitt@xyd.me:</span>
       <span className="text-theme-secondary">$ ~ </span>
       <span className="whitespace-pre-wrap">
         {randomMessage}{ellipsis}

@@ -2,6 +2,7 @@
 Creative builder, entreprenuer and speaker.
 
 Linkedin: https://www.linkedin.com/in/xuyudi/
+Github: https://github.com/xyd945
 
 Achievement
 
