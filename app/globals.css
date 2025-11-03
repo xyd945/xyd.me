@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-text: var(--theme-text);
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-accent: var(--theme-accent);
+}
+
 @layer base {
   :root {
     --theme-bg: #2E3440;
