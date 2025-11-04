@@ -48,7 +48,7 @@ export default function Page() {
   async function send() {
     if (loading || !input.trim()) return;
 
-    const next = [...messages, { role: 'user', content: input }];
+    const next = [...messages, { role: 'user' as const, content: input }];
     setMessages(next);
     setInput('');
     setLoading(true);
