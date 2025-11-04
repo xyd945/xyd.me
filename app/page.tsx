@@ -5,12 +5,12 @@ import { Thinking } from '@/components/Thinking';
 
 const AsciiArt = () => (
   <pre className="text-theme-accent text-xs leading-none">
-{`██╗   ██╗██╗   ██╗██████╗ ██╗
-╚██╗ ██╔╝██║   ██║██╔══██╗██║
- ╚████╔╝ ██║   ██║██║  ██║██║
-  ╚██╔╝  ██║   ██║██║  ██║██║
-   ██║   ╚██████╔╝██████╔╝██║
-   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝`}
+{`██╗  ██╗ ██╗   ██╗ ██████╗ 
+╚██╗██╔╝ ╚██╗ ██╔╝ ██╔══██╗
+ ╚███╔╝   ╚████╔╝  ██║  ██║
+ ╔███╚╗    ╚██╔╝   ██║  ██║
+██╔╝╚██╗    ██║    ██████╔╝
+╚═╝  ╚═╝    ╚═╝    ╚═════╝ .me`}
   </pre>
 );
 
@@ -27,7 +27,7 @@ export default function Page() {
     setMessages([
       {
         role: 'assistant',
-        content: `🤗 Welcome! My name is KITT, the AI assistant of Yudi. This is an interactive terminal🖥️. Just type your questions and press Enter.\n\nHere are some things you can ask about Yudi:\n- What are his biggest achievements?\n- Tell me about his professional experience.\n- What technologies is he passionate about?\n\nType 'help' for more commands.`
+        content: `🤗 Welcome! My name is KITT, the AI assistant of XYD. This is an interactive terminal🖥️. Just type your questions and press Enter.\n\nHere are some things you can ask about XYD:\n- What are his biggest achievements?\n- Tell me about his professional experience.\n- What technologies is he passionate about?\n\nType 'help' for more commands.`
       }
     ]);
     inputRef.current?.focus();
