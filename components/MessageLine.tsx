@@ -1,26 +1,5 @@
-import React from 'react';
+import type { ChatMessage } from "@/lib/prompt";
 
-interface MessageLineProps {
-  role: 'user' | 'assistant';
-  content: string;
+export function MessageLine({ role, content }: ChatMessage) {
+  return <div className="terminal-message"><span className={role === "user" ? "terminal-visitor" : "terminal-kitt"}>{role === "user" ? "visitor" : "kitt"}@xyd.me:</span><span className="terminal-path">$ ~ </span><span>{content}</span></div>;
 }
-
-export const MessageLine: React.FC<MessageLineProps> = ({ role, content }) => {
-  if (role === 'user') {
-    return (
-      <div>
-        <span className="text-theme-primary">visitor@xyd.me:</span>
-        <span className="text-theme-secondary">$ ~ </span>
-        <span className="whitespace-pre-wrap">{content}</span>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <span className="text-theme-accent">kitt@xyd.me:</span>
-      <span className="text-theme-secondary">$ ~ </span>
-      <span className="whitespace-pre-wrap">{content}</span>
-    </div>
-  );
-};
