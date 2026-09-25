@@ -4,26 +4,32 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "build": "next build --webpack",
+    "start": "CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false wrangler dev",
+    "lint": "eslint",
+    "preview": "npm run build && CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types scripts/check-posts.mts && node --experimental-strip-types scripts/check-media.mts && node scripts/check-permissions.mjs && node --experimental-strip-types scripts/check-terminal.mts && node --experimental-strip-types scripts/check-auth.mts",
+    "story:check": "node --experimental-strip-types scripts/story.mts --check",
+    "story:push": "node --experimental-strip-types scripts/story.mts --push"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
-    "@tailwindcss/typography": "^0.5.19",
-    "next": "16.0.1",
+    "@supabase/supabase-js": "^2.117.1",
+    "next": "^16.3.6",
     "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-markdown": "^10.1.0"
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "^16.3.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.139.0"
   }
 }

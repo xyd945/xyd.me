@@ -1,0 +1,4 @@
+# Used only by local Wrangler. Production: npx wrangler secret put GEMINI_API_KEY
+GEMINI_API_KEY=
+# Optional model override; default is configured in wrangler.jsonc.
+# MODEL_ID=gemini-2.5-flash

@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "xyd-me",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-24",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "rules": [{ "type": "Text", "globs": ["**/*.md"], "fallthrough": true }],
+  "vars": { "MODEL_ID": "gemini-2.5-flash" },
+  "ratelimits": [{
+    "name": "CHAT_LIMITER",
+    "namespace_id": "9452026",
+    "simple": { "limit": 10, "period": 10 }
+  }]
+}

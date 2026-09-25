@@ -2,8 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "XYD.me",
-  description: "What important truth do very few people agree with you on?",
+  metadataBase: new URL("https://xyd.me"),
+  title: "Yudi Xu — A little curious. Always building.",
+  description:
+    "An open notebook of things I build, places I go, and people I meet. Entrepreneur, tinkerer, and lifelong beginner.",
+  icons: { icon: "/icon.svg" },
+  openGraph: {
+    title: "Yudi Xu — A little curious. Always building.",
+    description: "Things I build. Places I go. People I meet.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -13,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
