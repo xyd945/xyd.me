@@ -46,7 +46,7 @@ The studio opens to your story library, with All / Drafts / Published filters. C
 Each library card has **Hide story** (or **Show story**) and **Delete story** controls. Hiding keeps the saved story in Drafts and removes it from public views; showing makes the saved version public again. The editor also has visible Hide and Delete buttons above the form. Hiding from the editor preserves unsaved edits without publishing or saving them. Delete opens a confirmation naming the story; **Delete permanently** removes its database row and cannot be undone. Uploaded images remain in Storage because other stories may reuse them.
 
 - **Hackathons:** choose won a prize, finalist, or participated without a prize. Add award details.
-- **Places:** give a city/country and latitude/longitude to add a clickable map pin. Any category can have a location.
+- **Places:** give a city/country and latitude/longitude to add a map pin. Any category can have a location. Every published story with both coordinates becomes a stop on the home page journey, in date order. Stories that use the same place name, the text before the first comma, share one pin.
 - **Life lately:** manually update Duolingo streak, XP, and section. Numbers stay blank until provided; no unofficial Duolingo API or invented streak is used.
 - **People:** use the founder’s name as the title, their startup as a tag, their website as the link, and your introduction as the story. No sample founder endorsements have been invented.
 - **Projects / Playground:** link to the project or GitHub repository. Importing GitHub content is curated, not an ongoing sync.
@@ -151,7 +151,8 @@ The first version loads the notebook in one query (up to Supabase’s default ro
 - Existing owner-authored `data/profile.md`: Shell history, awards, hackathons, and the Zurich chapter. Kept as the terminal’s knowledge source; notebook stories live in Supabase.
 - [LinkedIn](https://www.linkedin.com/in/xuyudi/) matched the existing profile link. Public search excerpts confirmed the Dutch Mobility award; the full profile was not accessible to the research tool.
 - Avatar: the owner’s [public GitHub avatar](https://github.com/xyd945.png), stored locally.
-- Map: simplified [Natural Earth boundaries via datasets/geo-countries](https://github.com/datasets/geo-countries), public-domain geographic data. Pins reflect chapters in the provided profile, not a claimed complete travel history.
+- Journey and The map view: [MapLibre GL](https://maplibre.org/) with free [OpenFreeMap](https://openfreemap.org/) vector tiles and [Terrain Tiles on AWS](https://registry.opendata.aws/terrain-tiles/) for relief, loaded in the visitor's browser with no API key. MapLibre's worker is copied to `public/maplibre/` by `scripts/copy-maplibre-worker.mjs` before `dev` and `build`.
+- Designed map cover: simplified [Natural Earth boundaries via datasets/geo-countries](https://github.com/datasets/geo-countries), public-domain geographic data. Pins reflect chapters in the provided profile, not a claimed complete travel history.
 - All other covers are original CSS/typographic designs. No generated photos or stock photos are presented as personal travel photos.
 
 Undated introductory entries carry the editorial date, 24 September 2026. Older entries use their event date or the first day of the documented month; these are editable. Copy is a proposed English first draft for the owner to review.

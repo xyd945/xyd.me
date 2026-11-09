@@ -3,19 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-maplibre-worker.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs",
     "build": "next build --webpack",
     "start": "CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false wrangler dev",
     "lint": "eslint",
     "preview": "npm run build && CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false wrangler dev",
     "deploy": "npm run build && wrangler deploy",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types scripts/check-posts.mts && node --experimental-strip-types scripts/check-media.mts && node scripts/check-permissions.mjs && node --experimental-strip-types scripts/check-terminal.mts && node --experimental-strip-types scripts/check-auth.mts",
+    "test": "node --experimental-strip-types scripts/check-posts.mts && node --experimental-strip-types scripts/check-media.mts && node scripts/check-permissions.mjs && node --experimental-strip-types scripts/check-terminal.mts && node --experimental-strip-types scripts/check-auth.mts && node --experimental-strip-types scripts/check-journey.mts",
     "story:check": "node --experimental-strip-types scripts/story.mts --check",
     "story:push": "node --experimental-strip-types scripts/story.mts --push"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.1",
+    "maplibre-gl": "^6.17.0",
     "next": "^16.3.6",
     "react": "19.2.0",
     "react-dom": "19.2.0"

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { starterPosts } from "@/data/posts";
@@ -12,12 +11,20 @@ import {
   selectPosts,
   type Post,
 } from "@/lib/posts";
+import { monthYear, placeName } from "@/lib/journey";
 import { supabase } from "@/lib/supabase";
 import Cover from "./Cover";
 import Icon from "./Icon";
+import Journey from "./Journey";
 import PostGallery from "./PostGallery";
 
 type View = "explore" | "about" | "map" | "saved";
+const views = [
+  ["explore", "grid", "Explore"],
+  ["about", "person", "About me"],
+  ["map", "globe", "The map"],
+  ["saved", "bookmark", "Saved"],
+] as const;
 const primaryCategories = Object.entries(categories).filter(
   ([key]) => key !== "experience",
 );
@@ -158,14 +165,7 @@ export default function Journal() {
         </Link>
       <div className="side-intro">A life, in little chapters.</div>
         <nav className="main-nav" aria-label="Main navigation">
-          {(
-            [
-              ["explore", "grid", "Explore"],
-              ["about", "person", "About me"],
-              ["map", "globe", "The map"],
-              ["saved", "bookmark", "Saved"],
-            ] as const
-          ).map(([key, icon, label]) => (
+          {views.map(([key, icon, label]) => (
             <button
               key={key}
               className={view === key ? "nav-item active" : "nav-item"}
@@ -230,52 +230,28 @@ export default function Journal() {
       </dialog>
       <main id="main" className="main-content">
         <header className="topbar">
-          <div className="topbar-brand"><button className="icon-button" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => { menu.current?.showModal(); setMenuOpen(true); }}><Icon name="menu"/></button><Link href="/" className="wordmark" aria-label="Yudi Xu home" onNavigate={() => changeView("explore")}>xyd<span>.me</span></Link></div>
-          <span className="topbar-caption">
-            THE PERSONAL SIDE OF <strong>YUDI XU</strong>
-          </span>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer">
+          <div className="topbar-brand"><button className="icon-button" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => { menu.current?.showModal(); setMenuOpen(true); }}><Icon name="menu"/></button><Link href="/" className="wordmark" aria-label="Yudi Xu home" onNavigate={() => changeView("explore")}><span className="brand-mark" aria-hidden="true">x</span>xyd<span>.me</span></Link></div>
+          <nav className="topbar-nav" aria-label="Sections">
+            {views.map(([key, , label]) => (
+              <button key={key} className={view === key ? "active" : ""} aria-current={view === key ? "page" : undefined} onClick={() => changeView(key)}>{label}</button>
+            ))}
+            <Link href="/terminal">Terminal</Link>
+          </nav>
+          <a className="topbar-hello" href={profile.linkedin} target="_blank" rel="noreferrer">
             Say hello <Icon name="arrow" size={14} />
           </a>
         </header>
         {view === "explore" && (
-          <section className="hero">
-            <div className="hero-copy">
-              <div className="intro-label">
-                <span className="live-dot" /> BUILDER. EXPLORER. WORK IN
-                PROGRESS.
-              </div>
-              <h1>
-                A little curious.
-                <br />
-                Always <span className="serif-word">building.</span>
-                <span className="brand-mark hero-brand" aria-hidden="true">x</span>
-              </h1>
-              <p>
-                I’m Yudi. I make things, go places, and meet good people.
-                <br className="desktop-break" /> This is my little corner of the
-                internet. Come have a look.
-              </p>
-              <div className="hero-links">
-                <button onClick={() => changeView("about")}>
-                  A bit about me <Icon name="right" size={16} />
-                </button>
-                <span>Usually with a sparkling water in hand.</span>
-              </div>
-            </div>
-            <div className="polaroid">
-              <span className="tape" />
-              <Image
-                src="/images/avatar.png"
-                alt="Yudi wearing a hoodie that reads Innovation is Freedom"
-                width={218}
-                height={218}
-                priority
-              />
-              <span className="polaroid-caption">a work in progress :)</span>
-              <span className="photo-scribble">that’s not me ↖</span>
-            </div>
-          </section>
+          <Journey
+            posts={posts}
+            loading={loading}
+            onOpen={openPost}
+            onPlace={(place) => {
+              setSearchOpen(true);
+              setQuery(place);
+              document.getElementById("feed")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          />
         )}
         {view === "about" && (
           <section className="about-panel">
@@ -316,7 +292,22 @@ export default function Journal() {
               A few pins from my work and hackathon chapters. More stories to
               come.
             </p>
-            <TravelMap places={places} onOpen={openPost} />
+            <Journey posts={posts} onOpen={openPost} mode="free" />
+            <div className="place-list">
+              {places.map((place) => (
+                <button key={place.id} onClick={() => openPost(place)}>
+                  <Icon name="location" />
+                  <span>
+                    <strong>{place.metadata.location}</strong>
+                    <small>{place.title}</small>
+                  </span>
+                  <Icon name="arrow" size={17} />
+                </button>
+              ))}
+            </div>
+            {places.length === 0 && (
+              <p className="empty-state">The first pin is still to come.</p>
+            )}
           </section>
         )}
         {view === "saved" && (
@@ -330,7 +321,7 @@ export default function Journal() {
         )}
         {view !== "map" && (
           <>
-            <section className="feed-toolbar" aria-label="Filter stories">
+            <section className="feed-toolbar" id="feed" aria-label="Filter stories">
               <div className="feed-heading">
                 <h2>
                   {view === "about"
@@ -383,9 +374,6 @@ export default function Journal() {
                       {label}
                     </button>
                   ))}
-                  <span className="feed-order">
-                    A CURATED LITTLE MIX <span>↓</span>
-                  </span>
                 </div>
               )}
             </section>
@@ -433,20 +421,12 @@ export default function Journal() {
                           )}
                         </div>
                         <h3>{post.title}</h3>
-                        <p>{post.excerpt || post.body.slice(0, 160)}</p>
+                        <p className="card-meta">
+                          {monthYear(post.date)}
+                          {placeName(post.metadata.location) && `, ${placeName(post.metadata.location)}`}
+                        </p>
                       </div>
                     </button>
-                    <div className="card-footer">
-                      <span>{post.tags.slice(0, 2).join(" · ")}</span>
-                      <button
-                        className={`bookmark-button ${saved.includes(post.id) ? "is-saved" : ""}`}
-                        onClick={() => toggleSaved(post.id)}
-                        aria-label={`${saved.includes(post.id) ? "Unsave" : "Save"} ${post.title}`}
-                        aria-pressed={saved.includes(post.id)}
-                      >
-                        <Icon name="bookmark" size={16} />
-                      </button>
-                    </div>
                   </article>
                 ))}
               </div>
@@ -613,88 +593,3 @@ export default function Journal() {
   );
 }
 
-function TravelMap({
-  places,
-  onOpen,
-}: {
-  places: Post[];
-  onOpen: (post: Post) => void;
-}) {
-  const [region, setRegion] = useState<"world" | "europe">("europe");
-  const bounds =
-    region === "world"
-      ? { x: 0, y: 0, w: 720, h: 360 }
-      : { x: 330, y: 52, w: 110, h: 64 };
-  return (
-    <>
-      <div className="travel-map">
-        <div className="map-controls">
-          <button
-            className={region === "europe" ? "active" : ""}
-            onClick={() => setRegion("europe")}
-            aria-pressed={region === "europe"}
-          >
-            Europe
-          </button>
-          <button
-            className={region === "world" ? "active" : ""}
-            onClick={() => setRegion("world")}
-            aria-pressed={region === "world"}
-          >
-            The world
-          </button>
-        </div>
-        <svg
-          viewBox={`${bounds.x} ${bounds.y} ${bounds.w} ${bounds.h}`}
-          role="group"
-          aria-label="Map of places in Yudi’s stories"
-        >
-          <image href="/images/world.svg" width="720" height="360" />
-          {places.map((place) => (
-            <a
-              key={place.id}
-              href={`?post=${place.id}`}
-              aria-label={`Read about ${place.metadata.location}`}
-              onClick={(event) => { event.preventDefault(); onOpen(place); }}
-            >
-              <title>{place.metadata.location}</title>
-              <circle
-                cx={(place.metadata.lng! + 180) * 2}
-                cy={(90 - place.metadata.lat!) * 2}
-                r={region === "world" ? 8 : 2.5}
-                fill="transparent"
-              />
-              <circle
-                cx={(place.metadata.lng! + 180) * 2}
-                cy={(90 - place.metadata.lat!) * 2}
-                r={region === "world" ? 3 : 0.85}
-                fill="#ef633f"
-                stroke="#fff"
-                strokeWidth={region === "world" ? 1 : 0.3}
-              />
-            </a>
-          ))}
-        </svg>
-        <span className="map-legend">
-          <span className="live-dot" />
-          {places.length} chapters on the map
-        </span>
-      </div>
-      <div className="place-list">
-        {places.map((place) => (
-          <button key={place.id} onClick={() => onOpen(place)}>
-            <Icon name="location" />
-            <span>
-              <strong>{place.metadata.location}</strong>
-              <small>{place.title}</small>
-            </span>
-            <Icon name="arrow" size={17} />
-          </button>
-        ))}
-      </div>
-      {places.length === 0 && (
-        <p className="empty-state">The first pin is still to come.</p>
-      )}
-    </>
-  );
-}

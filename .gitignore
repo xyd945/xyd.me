@@ -46,3 +46,6 @@ next-env.d.ts
 
 # Local story drafts and source photos
 .story-drafts/
+
+# Copied from node_modules by scripts/copy-maplibre-worker.mjs
+/public/maplibre/
