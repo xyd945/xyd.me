@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, Newsreader } from "next/font/google";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
+
+const sans = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz", "wdth"], variable: "--font-sans", display: "swap" });
+const serif = Newsreader({ subsets: ["latin"], style: ["italic"], axes: ["opsz"], variable: "--font-serif", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://xyd.me"),
@@ -19,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body>{children}</body>
     </html>
   );

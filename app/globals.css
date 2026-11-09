@@ -7,7 +7,8 @@
   --line: #e7e5de;
   --orange: #eb603f;
   --green: #376a4c;
-  --sans: Arial, Helvetica, sans-serif;
+  --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+  --serif: var(--font-serif), Georgia, serif;
 }
 * {
   box-sizing: border-box;
@@ -224,10 +225,7 @@ p {
   letter-spacing: 1.55px;
   color: var(--muted);
 }
-.topbar strong {
-  font-weight: 500;
-  color: #54574d;
-}
+
 .topbar a {
   display: flex;
   gap: 9px;
@@ -236,124 +234,14 @@ p {
   font-size: 12px;
   color: var(--ink);
 }
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 51px 0 54px;
-  gap: 20px;
-}
-.intro-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  color: #777b6c;
-}
-.live-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 100%;
-  background: #6c9277;
-}
-.hero h1 {
-  font-size: clamp(42px, 4.45vw, 68px);
-  line-height: 1.08;
-  letter-spacing: -3px;
-  font-weight: 500;
-  position: relative;
-  margin: 22px 0 20px;
-  white-space: nowrap;
-}
+
 .serif-word {
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   font-weight: 400;
   letter-spacing: -2.7px;
 }
-.hero-brand {
-  font-size: 50px;
-  width: .9em;
-  height: .9em;
-  border-radius: .28em;
-  padding-bottom: .125em;
-  vertical-align: top;
-  margin: 9px 0 0 12px;
-}
-.hero-copy > p {
-  color: #787b71;
-  font-size: 13px;
-  line-height: 1.8;
-}
-.hero-links {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-top: 22px;
-}
-.hero-links button {
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-}
-.hero-links > span {
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 12px;
-  color: #a19e90;
-}
-.polaroid {
-  position: relative;
-  background: #fff;
-  padding: 9px 9px 0;
-  transform: rotate(5deg);
-  box-shadow: 0 3px 15px #42473813;
-  width: 193px;
-  margin: 5px 21px 15px 15px;
-  flex-shrink: 0;
-}
-.polaroid img {
-  width: 100%;
-  height: 176px;
-  object-fit: cover;
-  object-position: center 65%;
-  filter: saturate(0.7);
-}
-.tape {
-  position: absolute;
-  width: 63px;
-  height: 21px;
-  background: #dad4b481;
-  top: -10px;
-  left: 66px;
-  transform: rotate(-13deg);
-  z-index: 1;
-  backdrop-filter: blur(1px);
-}
-.polaroid-caption {
-  display: block;
-  text-align: center;
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 13px;
-  line-height: 42px;
-  color: #616056;
-}
-.photo-scribble {
-  position: absolute;
-  bottom: -30px;
-  right: -4px;
-  font-family: Georgia, serif;
-  font-style: italic;
-  color: #979b87;
-  font-size: 14px;
-  transform: rotate(-12deg);
-}
+
 .feed-toolbar {
   border-top: 1px solid var(--line);
   padding-top: 27px;
@@ -415,18 +303,7 @@ p {
   border-color: #31392e;
   color: #fffef5;
 }
-.feed-order {
-  margin-left: auto;
-  font-size: 8px;
-  letter-spacing: 0.75px;
-  color: #999b8f;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.feed-order > span {
-  font-size: 15px;
-}
+
 .search-field {
   display: flex;
   align-items: center;
@@ -576,37 +453,7 @@ p {
   line-height: 1.75;
   margin-top: 7px;
 }
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-  padding: 12px 17px 15px;
-  margin-top: auto;
-}
-.card-footer > span {
-  color: #9a9b90;
-  font-size: 9px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.bookmark-button {
-  padding: 5px;
-  color: #a3a799;
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
-}
-.bookmark-button:hover {
-  background: #eeeee7;
-}
-.bookmark-button.is-saved {
-  color: var(--orange);
-}
-.bookmark-button.is-saved svg {
-  fill: #f9deca;
-}
+
 .image-cover {
   padding: 0;
 }
@@ -1257,49 +1104,7 @@ p {
   background: #fae7dd;
   color: #924d31;
 }
-.travel-map {
-  position: relative;
-  background: #f0f1e8;
-  border: 1px solid var(--line);
-  overflow: hidden;
-  border-radius: 12px;
-  margin-top: 31px;
-  aspect-ratio: 1.9;
-}
-.travel-map > svg {
-  width: 100%;
-  height: 100%;
-}
-.map-controls {
-  position: absolute;
-  top: 17px;
-  left: 17px;
-  padding: 4px;
-  background: #fffef8;
-  border-radius: 6px;
-  display: flex;
-  gap: 4px;
-  z-index: 1;
-}
-.map-controls button {
-  font-size: 10px;
-  padding: 8px 11px;
-  border-radius: 4px;
-}
-.map-controls button.active {
-  background: #344a38;
-  color: white;
-}
-.map-legend {
-  position: absolute;
-  bottom: 16px;
-  left: 21px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 9px;
-  color: #7b826f;
-}
+
 .place-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1644,17 +1449,7 @@ p {
   .main-content {
     padding: 0 68px;
   }
-  .hero {
-    padding-top: 62px;
-    padding-bottom: 65px;
-  }
-  .polaroid {
-    width: 225px;
-    margin-right: 40px;
-  }
-  .polaroid img {
-    height: 205px;
-  }
+
   .cover {
     height: 275px;
   }
@@ -1693,26 +1488,7 @@ p {
   .side-intro {
     font-size: 9px;
   }
-  .hero h1 {
-    font-size: 48px;
-    letter-spacing: -2.7px;
-  }
-  .hero-brand {
-    font-size: 34px;
-  }
-  .polaroid {
-    width: 158px;
-    margin-right: 5px;
-  }
-  .polaroid img {
-    height: 151px;
-  }
-  .hero-links {
-    gap: 12px;
-  }
-  .hero-links > span {
-    font-size: 10px;
-  }
+
   .cover {
     height: 214px;
     padding: 21px;
@@ -1760,9 +1536,7 @@ p {
   .code-bottom > span {
     font-size: 5px;
   }
-  .feed-order {
-    display: none;
-  }
+
   .filter {
     padding: 9px 12px;
   }
@@ -1772,10 +1546,7 @@ p {
   .card-copy h3 {
     font-size: 14px;
   }
-  .card-footer {
-    padding-left: 13px;
-    padding-right: 12px;
-  }
+
   .dot-field {
     grid-template-columns: repeat(5, 4px);
     gap: 5px;
@@ -1813,40 +1584,7 @@ p {
   .post-card:nth-child(3n + 2) .cover {
     height: 245px;
   }
-  .hero h1 {
-    font-size: 43px;
-  }
-  .hero-brand {
-    font-size: 30px;
-    margin-left: 7px;
-  }
-  .polaroid {
-    width: 133px;
-  }
-  .polaroid img {
-    height: 133px;
-  }
-  .polaroid-caption {
-    font-size: 10px;
-    line-height: 32px;
-  }
-  .tape {
-    left: 40px;
-    width: 49px;
-  }
-  .photo-scribble {
-    font-size: 12px;
-  }
-  .hero-copy > p {
-    font-size: 12px;
-  }
-  .hero-links > span {
-    display: none;
-  }
-  .intro-label {
-    font-size: 7px;
-    letter-spacing: 1px;
-  }
+
   .studio-title {
     font-size: 35px;
   }
@@ -1924,46 +1662,7 @@ p {
   .topbar a {
     font-size: 10px;
   }
-  .hero {
-    padding: 26px 0 36px;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .hero h1 {
-    font-size: 43px;
-    letter-spacing: -2px;
-    margin: 20px 0 15px;
-    white-space: normal;
-  }
-  .hero .serif-word {
-    letter-spacing: -2px;
-  }
-  .hero-brand {
-    font-size: 29px;
-  }
-  .hero-copy > p {
-    font-size: 12px;
-    line-height: 1.8;
-    max-width: 310px;
-  }
-  .intro-label {
-    font-size: 7px;
-    letter-spacing: 1px;
-  }
-  .polaroid {
-    width: 128px;
-    margin-top: 40px;
-    margin-right: 5px;
-  }
-  .polaroid img {
-    height: 127px;
-  }
-  .desktop-break {
-    display: none;
-  }
-  .hero-links {
-    margin-top: 15px;
-  }
+
   .feed-toolbar {
     padding-top: 19px;
     margin-bottom: 18px;
@@ -2019,9 +1718,7 @@ p {
   .map-section {
     padding-top: 31px;
   }
-  .travel-map {
-    aspect-ratio: 1.25;
-  }
+
   .post-dialog {
     max-height: 94dvh;
   }
@@ -2052,57 +1749,7 @@ p {
   }
 }
 @media (max-width: 500px) {
-  .hero {
-    padding-top: 20px;
-    position: relative;
-  }
-  .hero-copy {
-    width: 100%;
-  }
-  .hero h1 {
-    font-size: 43px;
-    margin-top: 19px;
-    max-width: 100%;
-    white-space: nowrap;
-  }
-  .hero-brand {
-    font-size: 29px;
-    margin-left: 6px;
-  }
-  .hero-copy > p {
-    max-width: 245px;
-    padding-right: 10px;
-  }
-  .polaroid {
-    position: absolute;
-    width: 83px;
-    right: 0;
-    top: 142px;
-    margin: 0 3px 0 0;
-    padding: 5px 5px 0;
-  }
-  .polaroid img {
-    height: 77px;
-  }
-  .polaroid-caption {
-    font-size: 7px;
-    line-height: 23px;
-  }
-  .photo-scribble {
-    display: none;
-  }
-  .tape {
-    width: 31px;
-    height: 12px;
-    left: 28px;
-    top: -5px;
-  }
-  .hero-links {
-    margin-top: 16px;
-  }
-  .hero {
-    padding-bottom: 38px;
-  }
+
   .cover,
   .post-card:nth-child(3n + 2) .cover {
     height: 185px;
@@ -2353,12 +2000,7 @@ p {
     font-size: 10px;
     line-height: 1.7;
   }
-  .card-footer {
-    padding: 8px 10px 11px;
-  }
-  .card-footer > span {
-    font-size: 7px;
-  }
+
   .result-label {
     font-size: 6px;
   }
@@ -2426,13 +2068,7 @@ p {
   .login-panel {
     padding: 25px;
   }
-  .travel-map {
-    aspect-ratio: 1.05;
-  }
-  .map-controls {
-    top: 10px;
-    left: 10px;
-  }
+
   .about-panel h1,
   .map-section h1,
   .saved-heading h1 {
@@ -2450,16 +2086,13 @@ p {
 }
 
 @media (max-width: 360px) {
-  .hero h1 { font-size: 36px; }
-  .hero-brand { font-size: 24px; }
-  .hero-copy > p { max-width: 207px; }
+
   .nav-item { font-size: 10px; padding: 9px 6px; }
   .hola { font-size: 48px; }
   .studio-title { font-size: 22px; }
   .ticket-title { font-size: 22px; }
   .ticket-title em { font-size: 25px; }
-  .polaroid { width: 70px; top: 128px; }
-  .polaroid img { height: 65px; }
+
 }
 
 /* Navigation stays out of the way until requested. */
@@ -2561,7 +2194,7 @@ button:disabled { cursor: default; opacity: .5; }
 }
 @media (max-width: 700px) {
   .topbar { height: 72px; border-bottom: 1px solid var(--line); }
-  .topbar-caption { display: none; }
+
   .topbar-brand { gap: 13px; }
   .topbar .wordmark { font-size: 22px; }
   .gallery-slide { height: 350px; }
@@ -2614,4 +2247,101 @@ button:disabled { cursor: default; opacity: .5; }
   .terminal-input { flex-wrap: wrap; }
   .terminal-input label { width: 100%; }
   .terminal-input input { min-height: 40px; font-size: 16px; }
+}
+
+/* ---- Places first: top navigation, the journey map, quieter cards ---- */
+.topbar { gap: 24px; position: sticky; top: 0; z-index: 20; background: var(--paper); }
+.topbar .wordmark { font-size: 24px; letter-spacing: -1px; }
+.topbar .brand-mark { width: 26px; height: 26px; font-size: 28px; border-radius: 8px; }
+.topbar-nav { display: flex; gap: 26px; letter-spacing: 0; }
+.topbar .topbar-nav button, .topbar .topbar-nav a { padding: 4px 0; border-bottom: 2px solid transparent; color: var(--ink); font-size: 15px; line-height: 1.4; letter-spacing: 0; }
+.topbar .topbar-nav .active { border-color: var(--orange); }
+.topbar .topbar-hello { font-size: 15px; }
+.topbar .icon-button[aria-label="Open menu"] { display: none; }
+
+.post-grid { gap: 40px 28px; }
+.post-card { background: none; border: 0; border-radius: 0; overflow: visible; }
+.post-card:hover { transform: none; box-shadow: none; }
+.post-card:hover h3 { text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.cover-wrap { border-radius: 6px; overflow: hidden; }
+.card-copy { padding: 14px 0 0; }
+.card-copy h3 { font-size: 20px; line-height: 1.2; letter-spacing: -0.3px; text-wrap: balance; }
+.category-label { font-size: 11px; letter-spacing: 0.1px; text-transform: none; margin-bottom: 8px; }
+.category-label > span:first-child { width: 6px; height: 6px; }
+.result-label { font-size: 11px; }
+.card-copy .card-meta { font-size: 13px; color: var(--muted); line-height: 1.45; margin-top: 6px; }
+
+/* Scroll distance grows with the number of stops, capped so a long journey never becomes a chore. */
+.journey { position: relative; height: min(calc(var(--stops) * 55vh), 800vh); min-height: 110vh; margin: 22px 0 10px; }
+.journey.free { height: auto; min-height: 0; margin: 0 0 20px; }
+/* Sticks just under the sticky top bar (91px) and always fits the viewport, so nothing is cut at page load. */
+.journey-panel { position: sticky; top: 107px; height: min(720px, calc(100dvh - 123px)); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--paper); }
+.journey.free .journey-panel { position: relative; top: auto; height: min(560px, 70dvh); }
+.journey-map { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s; }
+.journey-map.is-ready { opacity: 1; }
+.journey-loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 13px; color: var(--muted); z-index: 1; pointer-events: none; }
+.journey-map.is-ready + .journey-loading { display: none; }
+.journey-map .maplibregl-canvas { outline: none; }
+.journey-attr { position: absolute; right: 12px; bottom: 8px; z-index: 2; font-size: 10px; color: var(--muted); background: #faf9f6cc; padding: 2px 6px; border-radius: 4px; }
+.journey:not(.free) .journey-attr { bottom: 68px; }
+.journey-head { position: absolute; left: 40px; top: 38px; max-width: 430px; z-index: 2; pointer-events: none; }
+.journey-head h1 { font-size: clamp(26px, 3vw, 38px); line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; white-space: normal; text-wrap: balance; text-shadow: 0 0 14px var(--paper), 0 0 4px var(--paper); }
+.journey-head p { margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.5; text-shadow: 0 0 10px var(--paper), 0 0 3px var(--paper); }
+.journey-cue { position: absolute; right: 40px; top: 40px; font-size: 12px; color: var(--muted); z-index: 2; }
+.stop-card { position: absolute; right: 40px; top: 120px; width: 350px; max-width: calc(100% - 80px); background: #fff; padding: 10px 10px 16px; border-radius: 6px; box-shadow: 0 18px 50px #292a2629, 0 1px 0 #292a260f; z-index: 3; animation: stop-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes stop-in { from { opacity: 0; transform: translateX(24px); } }
+.stop-open { display: block; width: 100%; padding: 0; text-align: left; }
+.stop-media { position: relative; aspect-ratio: 4 / 3; border-radius: 3px; overflow: hidden; background: #e9e8e1; }
+.stop-media .cover { width: 100%; height: 100%; }
+.stop-row { display: flex; justify-content: space-between; align-items: baseline; margin: 14px 4px 4px; }
+.stop-year { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+.stop-cat { font-size: 12px; color: var(--muted); }
+.stop-card h2 { font-size: 19px; line-height: 1.2; font-weight: 600; letter-spacing: -0.012em; margin: 4px 4px 0; text-wrap: balance; }
+.stop-meta { font-size: 13px; color: var(--muted); margin: 6px 4px 0; line-height: 1.45; }
+.stop-more { display: block; font-size: 13px; margin: 12px 4px 0; padding: 0; text-decoration: underline; text-decoration-color: var(--orange); text-underline-offset: 3px; }
+.scrub { position: absolute; left: 40px; right: 40px; bottom: 30px; z-index: 2; }
+.scrub-track { position: relative; height: 2px; background: #292a262e; border-radius: 2px; }
+.scrub-fill { position: absolute; left: 0; top: 0; height: 2px; background: var(--orange); transition: width 0.4s; }
+.scrub-knob { position: absolute; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px var(--paper); transform: translateX(-50%); transition: left 0.4s; }
+.scrub-ticks { display: flex; justify-content: space-between; margin-top: 10px; }
+.scrub-ticks button { font-size: 12px; color: var(--muted); padding: 2px 0; font-variant-numeric: tabular-nums; }
+.scrub-ticks button.active { color: var(--ink); font-weight: 600; }
+.stop-pin { position: relative; width: 0; height: 0; padding: 0; cursor: pointer; }
+.stop-pin i { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 2px #fff; }
+.stop-pin.is-next i { background: #fff; box-shadow: 0 0 0 2px #8c8d84; }
+.stop-pin.is-now i { left: -7px; top: -7px; width: 14px; height: 14px; }
+.stop-pin.is-now::before { content: ""; position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--orange); animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { 0% { transform: scale(0.6); opacity: 0.9; } 100% { transform: scale(1.6); opacity: 0; } }
+.stop-pin span { position: absolute; left: 12px; top: -11px; white-space: nowrap; font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.3; color: var(--ink); text-shadow: 0 0 6px #fff, 0 0 2px #fff; }
+.stop-pin small { position: absolute; left: 12px; top: 10px; white-space: nowrap; font-size: 11px; font-weight: 500; color: var(--muted); text-shadow: 0 0 6px #fff; }
+.stop-pin.is-next span { color: #6f716a; }
+.stop-pin.is-now span { top: -44px; left: -10px; }
+.stop-pin.is-now small { top: -24px; left: -10px; }
+.stop-pin:focus-visible { outline: none; }
+.stop-pin:focus-visible i { box-shadow: 0 0 0 3px var(--orange); }
+@media (max-width: 940px) {
+  .topbar-nav { display: none; }
+  .topbar .icon-button[aria-label="Open menu"] { display: inline-flex; }
+}
+@media (max-width: 700px) {
+  .journey { height: min(calc(var(--stops) * 60vh), 800vh); }
+  .journey-panel { top: 80px; height: calc(100dvh - 96px); border-radius: 12px; }
+  .card-copy h3 { font-size: 17px; }
+  .journey-head { left: 18px; top: 18px; max-width: 240px; }
+  .journey-head p { display: none; }
+  .journey-cue { right: 16px; top: 16px; }
+  .stop-card { left: 12px; right: 12px; top: auto; bottom: 74px; width: auto; max-width: none; padding: 8px; }
+  .stop-open { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 0 10px; align-items: start; }
+  .stop-media { grid-row: 1 / 4; aspect-ratio: 1; }
+  .stop-row { margin: 2px 0 0; }
+  .stop-year { font-size: 20px; }
+  .stop-card h2 { font-size: 15px; margin: 2px 0 0; }
+  .stop-meta { margin: 4px 0 0; font-size: 12px; }
+  .stop-more { margin: 8px 0 0 114px; font-size: 12px; }
+  .scrub { left: 16px; right: 16px; bottom: 16px; }
+  .journey:not(.free) .journey-attr { bottom: 46px; right: 16px; font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stop-card { animation: none; }
+  .stop-pin.is-now::before { animation: none; }
 }
